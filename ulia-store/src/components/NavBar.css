@@ -1,0 +1,9 @@
+.fonts{
+font-family: 'Lacquer',
+sans-serif;
+}
+.image-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    grid-auto-rows: auto;
+}
