@@ -1,6 +1,6 @@
 This is small store-project for my sister's buisness 
 
-#Deployed here: dkurgan.github.io/25ofUsStore
+#Deployed here: http://dkurgan.github.io/25ofUsStore
 
 ###Twenty 5 of Us
 
