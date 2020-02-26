@@ -11,7 +11,7 @@ class Delivery extends React.Component{
                         песо вперед!</p><br/>
                 <div className="row">
                     <div className="col-sm-6">
-                    <a href="https://instagram.com/25of.us"><i className="fab fa-instagram fa-2x"></i></a>
+                    <a href="https://instagram.com/25_of_us"><i className="fab fa-instagram fa-2x"></i></a>
                     </div>
                     <div className="col-sm-6">
                     <a href="https://vk.com"><i className="fab fa-vk fa-2x"></i></a>
