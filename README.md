@@ -4,5 +4,4 @@
 
 Still working on it.Need finish cart and send form
 
-    Used:
-* React, Redux, JS and JSX
+* Used: React, Redux, JS and JSX
