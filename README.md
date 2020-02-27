@@ -3,3 +3,5 @@
 ### This is small store-project for my sister's buisness 
 
 Still working on it.Need finish cart and send form
+    Used:
+* React, Redux, JS and JSX
