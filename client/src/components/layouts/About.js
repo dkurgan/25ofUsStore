@@ -3,7 +3,7 @@ import React from 'react';
 class About extends React.Component{
     render(){
         return(
-        <div className="container text-center layouts">
+        <div className="container text-center fonts-body">
             <h3>About</h3>
             <p><em>25ofus это Маленький проект</em></p>
             <p>Тута описание бренда,философии и так далее.Ну типо почему каки-то лошки должны нам занести шекели</p>

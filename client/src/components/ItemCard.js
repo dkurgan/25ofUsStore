@@ -10,7 +10,7 @@ const ItemCard = props =>{
                     <div className="card-image">
                         <img src={item.img} alt={item.desc}/>
                         <span to="/" className="btn-floating halfway-fab red" onClick={()=>{ props.addToCart(item.id); 
-                        alert("item aded")}}><i>add</i></span>
+                        alert("item aded")}}><i className="fas fa-shopping-cart"></i></span>
                     </div>
 
                     <div className="card-content">
@@ -22,7 +22,7 @@ const ItemCard = props =>{
     })
     return(
         <div className="container">
-            <div className="box center-align">
+            <div className="box center-align" style={{marginTop: 80}}>
                 {itemList}
             </div>
         </div>

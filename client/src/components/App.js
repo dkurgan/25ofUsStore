@@ -1,5 +1,5 @@
 import React from 'react';
-import {HashRouter, Switch, Route } from 'react-router-dom';
+import {BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import NavBar from './NavBar';
 import ItemCard from './ItemCard';
@@ -14,9 +14,9 @@ import './Style.css';
 class App extends React.Component{
     render() {
         return (
-            <HashRouter basename='/'>
+            <BrowserRouter>
                 <NavBar />
-                <div className="container">
+                <div className="container" style={{marginTop: 80}}>
                     <Switch>
                         <Route exact path='/' component={ItemCard} />
                         <Route exact path='/cart' component={CartList} />
@@ -25,7 +25,7 @@ class App extends React.Component{
                     </Switch> 
                 </div>
                 <Footer />
-            </HashRouter>
+            </BrowserRouter>
         );
     }
 }
