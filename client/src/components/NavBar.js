@@ -19,7 +19,8 @@ class NavBar extends React.Component{
     }
 }
 
-const mapStateToProps = state =>{
+const mapStateToProps = state => {
+    console.log(state, "Sahdfkalsdfhj");
     return {
         counter: state.addedItems.length
     }

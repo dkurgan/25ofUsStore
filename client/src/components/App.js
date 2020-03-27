@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route } from 'react-router-dom';
+import {HashRouter, Switch, Route } from 'react-router-dom';
 
 import NavBar from './NavBar';
 import ItemCard from './ItemCard';
@@ -14,7 +14,7 @@ import './Style.css';
 class App extends React.Component{
     render() {
         return (
-            <BrowserRouter>
+            <HashRouter>
                 <NavBar />
                 <div className="container" style={{marginTop: 80}}>
                     <Switch>
@@ -25,7 +25,7 @@ class App extends React.Component{
                     </Switch> 
                 </div>
                 <Footer />
-            </BrowserRouter>
+            </HashRouter>
         );
     }
 }

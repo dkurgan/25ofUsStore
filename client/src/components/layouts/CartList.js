@@ -59,7 +59,7 @@ class CartList extends React.Component {
 const mapStateToProps = state => {
     return {
         items: state.addedItems,
-        total: state.total
+        total: state.total,
     }
 }
 
