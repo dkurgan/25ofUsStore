@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import { removeItem } from '../../action/index'
 class CartList extends React.Component {
     EmptyCart = () => {
         return (
@@ -10,35 +10,41 @@ class CartList extends React.Component {
             </div>
         )
     }
+    deleteItem = index => {
+        console.log(index);
+        this.props.removeItem(index);
+    }
     render() {
         let addedItems = this.props.items.length;
+        console.log(this.props.items, "Puhovik")
         let ItemList =
             (
-                this.props.items.map(item => {
+                this.props.items.map((item, index) => {
+                    console.log(item)
                     return (
+                        <div className="card">
+                        <div className="ui huge horizontal divided list">
                         <div key={item.id} className="item" >
-                            <img className="ui image avatar" src={item.img} alt="hoodie" />
-                            <div className="content">
-                                <div className="descriprtion">
-                                    <p>Количество: {item.quantity}</p>
+                                <img className="ui image" src={item.img} alt="hoodie" />
                                 </div>
-                                </div>
-                                <div className="extra-content">
-                            <select className="ui dropdown">
-                                <option value="">Size</option>
-                                <option value="1">M</option>
-                                <option value="0">L</option>
-                            </select>
+                            <div className="item">
+                                    <p>Размер: {item.size}</p>
                             </div>
-                        </div>
+                            <div className="item">
+                                    <p>Бабки: {item.price}</p>
+                                </div>
+                            </div>
+                            <button onClick={()=> this.deleteItem(item.id)}
+                                style={{ flex: 1, marginLeft: 3, marginBottom: 3 }}
+                                className="ui negative basic button">Удалить</button>
+                            </div>
                     )
                 })
             )
-        console.log(this.props.total)
         const returnValue = (
             <div>
-                <div className="text-center row m-1">
-                    <div className="ui huge list">
+                <div className="container">
+                    <div className="">
                         {ItemList}
                     </div>
                 </div>
@@ -58,9 +64,9 @@ class CartList extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        items: state.addedItems,
-        total: state.total,
+        items: state.cart.addedItems,
+        total: state.cart.total,
     }
 }
 
-export default connect(mapStateToProps)(CartList)
+export default connect(mapStateToProps, {removeItem})(CartList)

@@ -1,7 +1,7 @@
 import hoodieOne from '../images/hoodie_1.jpeg';
 import hoodieTwo from '../images/hoodie_2.jpeg';
 import pantsOne from '../images/pants_1.jpeg';
-
+import { ITEM_DELETE, ITEM_SELECTED } from '../action/types';
 
 const initState= {
     items: [
@@ -12,19 +12,14 @@ const initState= {
     ],
     addedItems: [],
     total: null,
-    alert: []
 }
 
+
+
 const cartReducer = (state = initState, action) => {
-    console.log(state, action)
-    if (action.type === 'REMOVE_ALERT') {
-        console.log(action, "ebat")
-        state.alert.splice(0, 1);
-        return state
-    }
-    else if (action.type === 'ITEM_SELECTED') {
-        let addedItem = state.items.find(item => item.id === action.id)
-        console.log(addedItem, "suka")
+    console.log(state)
+    if (action.type === ITEM_SELECTED) {
+        let addedItem = state.items.find(item => item.id === action.payload.id)
           //Check if item already in cart
          let itemInCart = state.addedItems.find(item=> action.id === item.id)
          if(itemInCart){
@@ -32,7 +27,7 @@ const cartReducer = (state = initState, action) => {
              return {
                  ...state,
                  total: state.total + addedItem.price,
-                 alert: [...state.alert, action.payload]
+
              }
          }
          else{
@@ -41,10 +36,20 @@ const cartReducer = (state = initState, action) => {
              const newTotal = state.total + addedItem.price;
             return { 
                 ...state, 
-                addedItems: [...state.addedItems, addedItem], 
+                addedItems: [...state.addedItems, {
+                    id: action.payload.id,
+                    size: action.payload.size,
+                    img: addedItem.img,
+                    price: addedItem.price
+                }], 
                 total: newTotal,
-                alert: [...state.alert, action.payload]
             }
+        }
+    }
+    else if (action.type === ITEM_DELETE) {
+        let itemInCart = state.addedItems.find(item => action.payload.index=== item.id)
+        if (itemInCart) {
+          return  state.addedItems.filter(item => item.id !== action.payload.index);
         }
     }
         return state;

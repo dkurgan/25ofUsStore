@@ -21,9 +21,13 @@ class NavBar extends React.Component{
 
 const mapStateToProps = state => {
     console.log(state, "Sahdfkalsdfhj");
-    return {
-        counter: state.addedItems.length
+    if (state.cart.addedItems) {
+        return {
+            counter: state.cart.addedItems.length
+        }
     }
+    else
+        return state;
 }
 
 export default connect(mapStateToProps)(NavBar)
