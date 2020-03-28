@@ -15,48 +15,54 @@ class CartList extends React.Component {
         this.props.removeItem(index);
     }
     render() {
-        let addedItems = this.props.items.length;
-        console.log(this.props.items, "Puhovik")
-        let ItemList =
-            (
-                this.props.items.map((item, index) => {
-                    console.log(item)
-                    return (
-                        <div className="card">
-                        <div className="ui huge horizontal divided list">
-                        <div key={item.id} className="item" >
-                                <img className="ui image" src={item.img} alt="hoodie" />
+        let addedItems = null;
+        if (this.props.items) {
+            addedItems = this.props.items.length;
+            console.log(this.props.items, "Puhovik")
+            let ItemList =
+                (
+                    this.props.items.map((item, index) => {
+                        console.log(item)
+                        return (
+                            <div className="card">
+                                <div className="ui huge horizontal divided list">
+                                    <div key={item.id} className="item" >
+                                        <img className="ui image" src={item.img} alt="hoodie" />
+                                    </div>
+                                    <div className="item">
+                                        <p>Размер: {item.size}</p>
+                                    </div>
+                                    <div className="item">
+                                        <p>Бабки: {item.price}</p>
+                                    </div>
                                 </div>
-                            <div className="item">
-                                    <p>Размер: {item.size}</p>
+                                <button onClick={() => this.deleteItem(item.id)}
+                                    style={{ flex: 1, marginLeft: 3, marginBottom: 3 }}
+                                    className="ui negative basic button">Удалить</button>
                             </div>
-                            <div className="item">
-                                    <p>Бабки: {item.price}</p>
-                                </div>
-                            </div>
-                            <button onClick={()=> this.deleteItem(item.id)}
-                                style={{ flex: 1, marginLeft: 3, marginBottom: 3 }}
-                                className="ui negative basic button">Удалить</button>
-                            </div>
-                    )
-                })
-            )
-        const returnValue = (
-            <div>
-                <div className="container">
-                    <div className="">
-                        {ItemList}
+                        )
+                    })
+                )
+             this.returnValue = (
+                <div>
+                    <div className="container">
+                        <div className="">
+                            {ItemList}
+                        </div>
+                    </div>
+                    <div className="center-align">
+                        <p>Total: {this.props.total} рублей</p>
+                        <Link to='/' className="btn btn-danger mt-2 mb-2"><i className="fas fa-shopping-cart"></i>Оформить</Link>
                     </div>
                 </div>
-                <div className="center-align">
-                    <p>Total: {this.props.total} рублей</p>
-                    <Link to='/' className="btn btn-danger mt-2 mb-2"><i className="fas fa-shopping-cart"></i>Оформить</Link>
-                </div>
-            </div>
-        )
+            )
+        }
+        else {
+            this.EmptyCart();
+        }
         return (
             <div>
-                {addedItems ? returnValue : this.EmptyCart()}
+                {addedItems ? this.returnValue : this.EmptyCart()}
             </div>
         )
     }

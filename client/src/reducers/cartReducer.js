@@ -49,7 +49,8 @@ const cartReducer = (state = initState, action) => {
     else if (action.type === ITEM_DELETE) {
         let itemInCart = state.addedItems.find(item => action.payload.index=== item.id)
         if (itemInCart) {
-          return  state.addedItems.filter(item => item.id !== action.payload.index);
+            const addItems = state.addedItems.filter(item => item.id !== action.payload.index);
+            return [...state.addedItems,addItems]
         }
     }
         return state;
