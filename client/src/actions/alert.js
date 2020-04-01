@@ -1,4 +1,5 @@
 import { REMOVE_ALERT, ADD_ALERT } from './types';
+import { v4 } from 'uuid';
 
 export const setAlert = (msg, color) => dispatch => {
     const id = v4();

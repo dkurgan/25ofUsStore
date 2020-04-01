@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { removeFromCart } from '../actions/cart';
+import { setAlert } from '../actions/alert';
+import Alert from './Alert';
 
 class ShopingCart extends React.Component{
     EmptyCart(){
@@ -17,6 +19,7 @@ class ShopingCart extends React.Component{
     }
     removeCart = uid => {
         this.props.removeFromCart(uid);
+        this.props.setAlert('Товар удален из корзины', 'green');
     }
     render() {
         let cartList = [];
@@ -55,6 +58,7 @@ class ShopingCart extends React.Component{
         return (this.props.addItems.length > 0 ?
             <div>
                 <div style={{ marginTop: 40 }} className="ui middle aligned divided list">
+                    {this.props.alert ? <Alert /> : null}
                     {cartList}
                 </div>
                 <div className="content">
@@ -69,8 +73,9 @@ class ShopingCart extends React.Component{
 
 const mapStateToProps = state => {
     return {
-        addItems: state.cart
+        addItems: state.cart,
+        alert: state.alert
     }
 }
 
-export default connect(mapStateToProps, {removeFromCart})(ShopingCart);
+export default connect(mapStateToProps, {removeFromCart, setAlert})(ShopingCart);

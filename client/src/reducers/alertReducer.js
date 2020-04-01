@@ -1,8 +1,9 @@
-import { ADD_ALERT, REMOVE_ALERT } from '../action/types';
+import { ADD_ALERT, REMOVE_ALERT } from '../actions/types';
 
 const initState = []
 
 const Alerts = (state = initState, action) => {
+    console.log(state, "ALERT")
     const { type, payload } = action
     switch (type) {
         case ADD_ALERT:
