@@ -1,62 +1,33 @@
+import { ADD_ITEM, REMOVE_ITEM } from "../actions/types";
 import hoodieOne from '../images/hoodie_1.jpeg';
 import hoodieTwo from '../images/hoodie_2.jpeg';
 import pantsOne from '../images/pants_1.jpeg';
-import { ITEM_DELETE, ITEM_SELECTED } from '../action/types';
 
-const initState= {
-    items: [
-        {id: 1, title: "Black hoodie", desc: "Top hoodie for everyone", price: 3200, img: hoodieOne},
-        {id: 2, title: "White hoodie", desc: "Top hoodie for everyone", price: 3200, img: hoodieTwo},
-        {id: 3, title: "Black pants", desc: "Top pants for everyone", price: 2400, img: pantsOne},
-        {id: 4, title: "White pants", desc: "Top pants for everyone", price: 2400, img: pantsOne},
-    ],
-    addedItems: [],
-    total: null,
-}
+const initState = [];
 
-
+ const itemsPool =[
+    {id: 1, title: "Black hoodie", desc: "Top hoodie for everyone", price: 3200, src: hoodieOne},
+    {id: 2, title: "White hoodie", desc: "Top hoodie for everyone", price: 3200, src: hoodieTwo},
+    {id: 3, title: "Black pants", desc: "Top pants for everyone", price: 2400, src: pantsOne},
+    {id: 4, title: "White pants", desc: "Top pants for everyone", price: 2400, src: pantsOne},
+]
 
 const cartReducer = (state = initState, action) => {
-    console.log(state)
-    if (action.type === ITEM_SELECTED) {
-        let addedItem = state.items.find(item => item.id === action.payload.id)
-          //Check if item already in cart
-         let itemInCart = state.addedItems.find(item=> action.id === item.id)
-         if(itemInCart){
-             addedItem.quantity += 1;
-             return {
-                 ...state,
-                 total: state.total + addedItem.price,
-
-             }
-         }
-         else{
-            addedItem.quantity = 1;
-            //calculating the total
-             const newTotal = state.total + addedItem.price;
-            return { 
-                ...state, 
-                addedItems: [...state.addedItems, {
-                    id: action.payload.id,
-                    size: action.payload.size,
-                    img: addedItem.img,
-                    price: addedItem.price
-                }], 
-                total: newTotal,
-            }
-        }
+    const { type, payload } = action;
+    switch (type) {
+        case ADD_ITEM:
+            let item = itemsPool.find(item => item.id === payload.id);
+            item.size = payload.size;
+            item.uid = payload.uid;
+            return [...state, item];
+        case REMOVE_ITEM:
+            console.log(state, payload.uid)
+            return state.filter(item => 
+             item.uid
+             !== payload.uid);
+        default:
+            return state;
     }
-    else if (action.type === ITEM_DELETE) {
-        let itemInCart = state.addedItems.find(item => action.payload.index=== item.id)
-        if (itemInCart) {
-            const oldState = initState;
-            const addItems = state.addedItems.filter(item => item.id !== action.payload.index);
-            console.log(addItems, "ADDD_ATEMS")
-            oldState.addedItems.push(addItems)
-            return oldState
-        }
-    }
-        return state;
-  }
+}
 
-  export default cartReducer
+export default cartReducer

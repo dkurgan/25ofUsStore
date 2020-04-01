@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import alert from './alertReducer';
+import items from './itemReducer';
 import cart from './cartReducer';
+// import alert from './alertReducer';
 
 export default combineReducers({
-    alert,
-    cart
+    items,
+    cart,
+    // alert
 })
