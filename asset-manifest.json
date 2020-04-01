@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/25ofUsStore/static/css/main.f94d0f95.chunk.css",
-    "main.js": "/25ofUsStore/static/js/main.61acd439.chunk.js",
-    "main.js.map": "/25ofUsStore/static/js/main.61acd439.chunk.js.map",
-    "runtime-main.js": "/25ofUsStore/static/js/runtime-main.23199a99.js",
-    "runtime-main.js.map": "/25ofUsStore/static/js/runtime-main.23199a99.js.map",
-    "static/js/2.c8dc7a9a.chunk.js": "/25ofUsStore/static/js/2.c8dc7a9a.chunk.js",
-    "static/js/2.c8dc7a9a.chunk.js.map": "/25ofUsStore/static/js/2.c8dc7a9a.chunk.js.map",
+    "main.css": "/25ofUsStore/static/css/main.2259812b.chunk.css",
+    "main.js": "/25ofUsStore/static/js/main.1b654c32.chunk.js",
+    "main.js.map": "/25ofUsStore/static/js/main.1b654c32.chunk.js.map",
+    "runtime-main.js": "/25ofUsStore/static/js/runtime-main.e8e079e4.js",
+    "runtime-main.js.map": "/25ofUsStore/static/js/runtime-main.e8e079e4.js.map",
+    "static/js/2.44278bac.chunk.js": "/25ofUsStore/static/js/2.44278bac.chunk.js",
+    "static/js/2.44278bac.chunk.js.map": "/25ofUsStore/static/js/2.44278bac.chunk.js.map",
     "index.html": "/25ofUsStore/index.html",
-    "precache-manifest.4dcd681b65dccfb5b1844d21ffa9abcc.js": "/25ofUsStore/precache-manifest.4dcd681b65dccfb5b1844d21ffa9abcc.js",
+    "precache-manifest.6427b3447fd9c8e26c14eb2dd789ff60.js": "/25ofUsStore/precache-manifest.6427b3447fd9c8e26c14eb2dd789ff60.js",
     "service-worker.js": "/25ofUsStore/service-worker.js",
-    "static/css/main.f94d0f95.chunk.css.map": "/25ofUsStore/static/css/main.f94d0f95.chunk.css.map",
-    "static/js/2.c8dc7a9a.chunk.js.LICENSE.txt": "/25ofUsStore/static/js/2.c8dc7a9a.chunk.js.LICENSE.txt",
+    "static/css/main.2259812b.chunk.css.map": "/25ofUsStore/static/css/main.2259812b.chunk.css.map",
+    "static/js/2.44278bac.chunk.js.LICENSE.txt": "/25ofUsStore/static/js/2.44278bac.chunk.js.LICENSE.txt",
     "static/media/hoodie_1.jpeg": "/25ofUsStore/static/media/hoodie_1.2747f083.jpeg",
     "static/media/hoodie_2.jpeg": "/25ofUsStore/static/media/hoodie_2.eba0ea35.jpeg",
     "static/media/pants_1.jpeg": "/25ofUsStore/static/media/pants_1.9fec3422.jpeg"
   },
   "entrypoints": [
-    "static/js/runtime-main.23199a99.js",
-    "static/js/2.c8dc7a9a.chunk.js",
-    "static/css/main.f94d0f95.chunk.css",
-    "static/js/main.61acd439.chunk.js"
+    "static/js/runtime-main.e8e079e4.js",
+    "static/js/2.44278bac.chunk.js",
+    "static/css/main.2259812b.chunk.css",
+    "static/js/main.1b654c32.chunk.js"
   ]
 }
