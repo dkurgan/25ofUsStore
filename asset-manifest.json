@@ -1,25 +1,26 @@
 {
   "files": {
     "main.css": "/25ofUsStore/static/css/main.47228de0.chunk.css",
-    "main.js": "/25ofUsStore/static/js/main.18addc48.chunk.js",
-    "main.js.map": "/25ofUsStore/static/js/main.18addc48.chunk.js.map",
+    "main.js": "/25ofUsStore/static/js/main.7ef9d9ba.chunk.js",
+    "main.js.map": "/25ofUsStore/static/js/main.7ef9d9ba.chunk.js.map",
     "runtime-main.js": "/25ofUsStore/static/js/runtime-main.e8e079e4.js",
     "runtime-main.js.map": "/25ofUsStore/static/js/runtime-main.e8e079e4.js.map",
-    "static/js/2.bda8d37f.chunk.js": "/25ofUsStore/static/js/2.bda8d37f.chunk.js",
-    "static/js/2.bda8d37f.chunk.js.map": "/25ofUsStore/static/js/2.bda8d37f.chunk.js.map",
+    "static/js/2.a9091fd1.chunk.js": "/25ofUsStore/static/js/2.a9091fd1.chunk.js",
+    "static/js/2.a9091fd1.chunk.js.map": "/25ofUsStore/static/js/2.a9091fd1.chunk.js.map",
     "index.html": "/25ofUsStore/index.html",
-    "precache-manifest.0238c6996b893d69d102eddf8a03736b.js": "/25ofUsStore/precache-manifest.0238c6996b893d69d102eddf8a03736b.js",
+    "precache-manifest.e4e2c0be95075a88f1451fac293dbae2.js": "/25ofUsStore/precache-manifest.e4e2c0be95075a88f1451fac293dbae2.js",
     "service-worker.js": "/25ofUsStore/service-worker.js",
     "static/css/main.47228de0.chunk.css.map": "/25ofUsStore/static/css/main.47228de0.chunk.css.map",
-    "static/js/2.bda8d37f.chunk.js.LICENSE.txt": "/25ofUsStore/static/js/2.bda8d37f.chunk.js.LICENSE.txt",
-    "static/media/hoodie25.JPG": "/25ofUsStore/static/media/hoodie25.b1e2a25b.JPG",
-    "static/media/t-shirt.JPG": "/25ofUsStore/static/media/t-shirt.14a55ae7.JPG",
-    "static/media/wtf.JPG": "/25ofUsStore/static/media/wtf.9d647dcb.JPG"
+    "static/js/2.a9091fd1.chunk.js.LICENSE.txt": "/25ofUsStore/static/js/2.a9091fd1.chunk.js.LICENSE.txt",
+    "static/media/hoodie25.JPG": "/25ofUsStore/static/media/hoodie25.d4cd1eba.JPG",
+    "static/media/hoodie_1.jpeg": "/25ofUsStore/static/media/hoodie_1.2747f083.jpeg",
+    "static/media/t-shirt.JPG": "/25ofUsStore/static/media/t-shirt.69516a03.JPG",
+    "static/media/wtf.JPG": "/25ofUsStore/static/media/wtf.9da10161.JPG"
   },
   "entrypoints": [
     "static/js/runtime-main.e8e079e4.js",
-    "static/js/2.bda8d37f.chunk.js",
+    "static/js/2.a9091fd1.chunk.js",
     "static/css/main.47228de0.chunk.css",
-    "static/js/main.18addc48.chunk.js"
+    "static/js/main.7ef9d9ba.chunk.js"
   ]
 }
