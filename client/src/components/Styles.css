@@ -90,3 +90,12 @@
         padding: 0.8em 1em;
     }
 }
+.name{
+    width: 60% !important
+}
+#mobForm{
+    width: 60% !important
+}
+#postId{
+    width: 30% !important;
+}

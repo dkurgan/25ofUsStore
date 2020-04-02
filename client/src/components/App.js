@@ -7,6 +7,7 @@ import {Footer} from './Footer.js';
 import About from './About';
 import Delivery from './Delivery'
 import ShopingCart from './ShopingCart';
+import SubmitForm from './layouts/SubmitForm';
 
 class App extends React.Component{
     render() {
@@ -19,6 +20,7 @@ class App extends React.Component{
                          <Route exact path='/cart' component={ShopingCart} />
                         <Route exact path='/about' component={About} />
                         <Route exact path='/delivery' component={Delivery} /> 
+                        <Route exact path='/submit' component={SubmitForm} /> 
                     </Switch> 
                 </div>
               <Footer/>

@@ -27,7 +27,6 @@ class ShopingCart extends React.Component{
         if (this.props.addItems) {
             cartList = this.props.addItems.map(item => {
                 this.newTotal += item.price;
-                console.log(item, "Item Shiping")
                 let size = "";
                 if (item.size === "M") {
                     size = "L";
@@ -58,12 +57,12 @@ class ShopingCart extends React.Component{
         return (this.props.addItems.length > 0 ?
             <div>
                 <div style={{ marginTop: 40 }} className="ui middle aligned divided list">
-                    {this.props.alert ? <Alert /> : null}
+                {this.props.alert ? <Alert /> : null}
                     {cartList}
                 </div>
                 <div className="content">
                     <h4> Total: {this.newTotal} денег</h4>
-                    <button className="ui purple button">Оформить</button>
+                  <Link to='/submit'><button className="ui purple button">Оформить</button></Link>
                 </div>
             </div>
              : this.EmptyCart()
