@@ -1,7 +1,7 @@
 import { ADD_ITEM, REMOVE_ITEM } from "../actions/types";
-import hoodieOne from '../images/hoodie25.JPG';
-import tshirt from '../images/t-shirt.JPG';
-import bluzka from '../images/wtf.JPG';
+import hoodieOne from '../images/pants_1.jpeg';
+import tshirt from '../images/hoodie_2.jpeg';
+import bluzka from '../images/pants_1.jpeg';
 import hoodie from '../images/hoodie_1.jpeg'
 
 const initState = [];
@@ -22,7 +22,6 @@ const cartReducer = (state = initState, action) => {
             item.uid = payload.uid;
             return [...state, item];
         case REMOVE_ITEM:
-            console.log(state, payload.uid)
             return state.filter(item => 
              item.uid
              !== payload.uid);

@@ -1,6 +1,6 @@
-import hoodieOne from '../images/hoodie25.JPG';
-import tshirt from '../images/t-shirt.JPG';
-import bluzka from '../images/wtf.JPG';
+import hoodieOne from '../images/pants_1.jpeg';
+import tshirt from '../images/hoodie_2.jpeg';
+import bluzka from '../images/pants_1.jpeg';
 import hoodie from '../images/hoodie_1.jpeg'
 
 const initState= {

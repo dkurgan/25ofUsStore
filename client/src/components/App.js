@@ -1,7 +1,7 @@
 import React from 'react';
 import {HashRouter, Switch, Route } from 'react-router-dom';
 import NavBar from './layouts/NavBar';
-import style from './Styles.css';
+import './Styles.css';
 import ItemCart from './layouts/ItemCart';
 import {Footer} from './Footer.js';
 import About from './About';
