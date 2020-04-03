@@ -20,7 +20,7 @@ class NavBar extends React.Component{
 
 const mapStateToProps = state => {
     return {
-        cart: null
+        cart: state.cart
     }
 }
 
