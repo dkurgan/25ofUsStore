@@ -4,9 +4,10 @@ import { removeFromCart } from '../actions/cart';
 import { setAlert } from '../actions/alert';
 import Alert from './Alert';
 import SubmitForm from './layouts/SubmitForm';
+import {rightPlaceAlert} from '../helpers/placeAlert';
 
 class ShopingCart extends React.Component{
-    state = {clicked: false}
+    state = { clicked: false, newSize: [] }
     EmptyCart(){
         return (
             <div style={{marginTop: 50}} className="ui center aligned header">
@@ -14,22 +15,33 @@ class ShopingCart extends React.Component{
             </div>
         )
     }
-    handeleSize = event => {
-        event.preventDefault();
-        // this.setState({ size: event.target.value });
+    handeleSize = (size, id) => {
+        console.log(size)
+        this.setState(state => {
+            let value = {size,id}
+            let newSize = [...state.newSize, value];
+            return {
+                newSize, 
+            };
+          });
     }
     handeleDelivery = e => {
         this.setState({clicked: !this.state.clicked})
     }
     removeCart = uid => {
         this.props.removeFromCart(uid);
-        this.props.setAlert('Товар удален из корзины', 'green');
+        this.props.setAlert('Товар удален из корзины', 'green', 999);
     }
     render() {
+        console.log(this.state);
+        const { alert, addItems } = this.props;
         let cartList = [];
+        let alertPlace = null;
+        if (alert.length > 0)
+            alertPlace = rightPlaceAlert(alert[0].postId, 999);
        this.newTotal = 0;
-        if (this.props.addItems) {
-            cartList = this.props.addItems.map(item => {
+        if (addItems) {
+            cartList = addItems.map((item, index) => {
                 this.newTotal += item.price;
                 let size = "";
                 if (item.size === "M") {
@@ -45,7 +57,7 @@ class ShopingCart extends React.Component{
                         <div className="five wide column itemDesc">
                             <h3>Item Name here</h3>
                             <p className=""> Размер:
-                        <select onChange={(e) => this.handeleSize(e)} className="ui dropdown">
+                        <select onChange={(e) => this.handeleSize(e.target.value, item.id)} className="ui dropdown">
                                 <option value={item.size}>{item.size}</option>
                                 <option value={size}>{size}</option>
                         </select> </p> 
@@ -59,10 +71,10 @@ class ShopingCart extends React.Component{
             })
         }
         this.clicked = false;
-        return (this.props.addItems.length > 0 ?
+        return (addItems.length > 0 ?
             <div>
                 <div style={{ marginTop: 40 }} className="ui middle aligned divided list">
-                {this.props.alert ? <Alert /> : null}
+                {alert ? alertPlace : null}
                     {cartList}
                 </div>
                 <div className="content">

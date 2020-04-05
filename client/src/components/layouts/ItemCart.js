@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { addToCart } from '../../actions/cart';
 import Alert from '../Alert';
 import { setAlert } from '../../actions/alert';
+import { rightPlaceAlert } from '../../helpers/placeAlert';
 
 class ItemCard extends React.Component{
     state = {size: null}
@@ -14,15 +15,20 @@ class ItemCard extends React.Component{
         if (this.state.size != null) {
             this.props.addToCart(id, this.state.size);
             this.props.setAlert(`Размер: ${this.state.size} был добавлен в корзину`
-                , "green");
+                , "green", id);
             this.setState({ size: null });
             setTimeout(()=> document.getElementById(id).value = "", 500)
         }
         else
-            this.props.setAlert("Выберите размер!", "red");
+            this.props.setAlert("Выберите размер!", "red", id);
     }
     render() {
+        const { alert } = this.props;
+        let postAlert = null;
         let ItemList = this.props.items.map((item) => {
+            if (alert.length > 0) {
+                postAlert = rightPlaceAlert(alert[0].postId, item.id);
+            }
             return (
                 <div key={item.id} className="ui centered card">
                     <div className="image">
@@ -46,7 +52,7 @@ class ItemCard extends React.Component{
                         {item.desc}
                         <h5>Price: {item.price} рубляу</h5>
                     </div>
-                    {this.props.alert ? <Alert /> : null}
+                    {alert ? postAlert : null}
                 </div>
             )
         })

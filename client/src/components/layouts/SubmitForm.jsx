@@ -26,8 +26,8 @@ class SubmitForm extends React.Component{
     e.preventDefault();
     let err = formErrors(this.state);
     this.setState({ errors: err });
-    console.log(err)
-    if (Object.keys(err).length === 0) // Object.keys will return an array with all keys
+    console.log(Object.keys(err).length)
+    if (Object.keys(err).length != 0) // Object.keys will return an array with all keys
       this.props.setAlert("Проверьте ваши данные", "red");
     else
       this.props.setAlert('Все тути-фрутти', 'green');
