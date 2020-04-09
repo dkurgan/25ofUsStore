@@ -1,4 +1,5 @@
 export const formErrors = data => {
+    console.log(data)
     let errors = {};
     if (data.firstName.length < 3)
         errors.fName = 1;

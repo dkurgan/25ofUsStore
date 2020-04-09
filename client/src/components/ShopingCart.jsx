@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { removeFromCart } from '../actions/cart';
 import { setAlert } from '../actions/alert';
-import Alert from './Alert';
 import SubmitForm from './layouts/SubmitForm';
 import {rightPlaceAlert} from '../helpers/placeAlert';
 
@@ -48,6 +47,7 @@ class ShopingCart extends React.Component{
                     size = "L";
                 } else
                     size = "M";
+                console.log(item.uid, "easy")
                 return (
                     <div className="item ui centered grid" key={item.uid}>
                         <div className="eight wide column">

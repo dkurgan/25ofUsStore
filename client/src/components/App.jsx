@@ -3,7 +3,7 @@ import {HashRouter, Switch, Route } from 'react-router-dom';
 import NavBar from './layouts/NavBar';
 import './Styles.css';
 import ItemCart from './layouts/ItemCart';
-import {Footer} from './Footer.js';
+import {Footer} from './Footer.jsx';
 import About from './About';
 import Delivery from './Delivery'
 import ShopingCart from './ShopingCart';

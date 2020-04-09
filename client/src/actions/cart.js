@@ -1,7 +1,7 @@
 import { v4 } from 'uuid';
 import { ADD_ITEM, REMOVE_ITEM } from './types'
 
-export const addToCart = (id, size) => dispatch =>{
+export const addToCart = (id, size) => dispatch => {
     let uid = v4();
     dispatch ({
         type: ADD_ITEM,

@@ -18,6 +18,10 @@ const cartReducer = (state = initState, action) => {
     switch (type) {
         case ADD_ITEM:
             let item = itemsPool.find(item => item.id === payload.id);
+            let itemInCart = state.find(item => item.id === payload.id);
+            if (itemInCart) {
+                return state;
+            }
             item.size = payload.size;
             item.uid = payload.uid;
             return [...state, item];

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addToCart } from '../../actions/cart';
-import Alert from '../Alert';
+import Alert from '../alert';
 import { setAlert } from '../../actions/alert';
 import { rightPlaceAlert } from '../../helpers/placeAlert';
 
