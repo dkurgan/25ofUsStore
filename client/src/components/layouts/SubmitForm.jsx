@@ -39,8 +39,8 @@ class SubmitForm extends React.Component{
     else if (Object.keys(err).length === 0 && this.state.checkbox.carier === true) {
       let order = this.state;
       order.total = this.props.total;
-      // order.matter = this.props.items.matter;
-      // order.warehouse = "Москва, улица Южнобутовская, дом 9"
+      order.matter = this.props.items.matter;
+      order.warehouse = "Москва, улица Южнобутовская, дом 9"
       this.props.calculateDelivery(order);
       this.props.setAlert('Ваш заказ переден в курьерску службу, менеджер скоро свяжется с вами',
         'green', 888);

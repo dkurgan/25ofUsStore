@@ -1,0 +1,27 @@
+{
+  "name": "store-server",
+  "version": "1.0.0",
+  "description": "Server for 25 of us store page",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:build": "tsc -w",
+    "start:run": "nodemon build/index.js",
+    "server": "concurrently npm:start:* ",
+    "client": "cd ../client && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "Danila Kurgan",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.17.6",
+    "@types/request": "^2.48.4",
+    "@types/request-promise-native": "^1.0.17",
+    "concurrently": "^5.1.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.3",
+    "reflect-metadata": "^0.1.13",
+    "request": "^2.88.2",
+    "request-promise-native": "^1.0.8"
+  }
+}

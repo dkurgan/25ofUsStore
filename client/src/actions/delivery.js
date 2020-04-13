@@ -1,13 +1,16 @@
-import api from '../api';
+import api from '../api'
+import { setAlert } from './alert';
+
 //request to dostavista.ru calculate delivery cost
 export const calculateDelivery = order => async dispatch =>{
-    const res = await api.post('/calculate-order', {
+    try {
+        const res = await api.post('/delivery-calculate',{
             matter: order.matter, //type of item
-            vehicle_type_id: 6, //what vehicle 6 - by foot
+            // vehicle_type_id: 6, //what vehicle 6 - by foot
             total_weight_kg: order.weight, //weight
             insurance_amount: order.insurance, //insurance
             is_contact_person_notification_enabled: true, 
-            backpayment_details: order.payment, //payment back
+            // backpayment_details: order.payment, //payment back - on server
             points: [{
                 address: order.warehouse
             },{ // order delivery details
@@ -22,5 +25,7 @@ export const calculateDelivery = order => async dispatch =>{
                 }
             }]
     });
-    console.log(res.data);
+    } catch (err) {
+        dispatch(setAlert(err.msg, "red", 888));
+    }
 }
