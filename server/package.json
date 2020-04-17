@@ -9,7 +9,8 @@
     "start:run": "nodemon build/index.js",
     "server": "concurrently npm:start:* ",
     "client": "cd ../client && npm start",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false tsc -w npm install --prefix client && npm run build --prefix client "
   },
   "author": "Danila Kurgan",
   "license": "ISC",
