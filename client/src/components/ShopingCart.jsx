@@ -14,10 +14,9 @@ class ShopingCart extends React.Component{
             </div>
         )
     }
-    handeleSize = (size, id) => {
-        console.log(size)
+    handeleSize = (size, title) => {
         this.setState(state => {
-            let value = {size,id}
+            let value = {size,title}
             let newSize = [...state.newSize, value];
             return {
                 newSize, 
@@ -32,7 +31,6 @@ class ShopingCart extends React.Component{
         this.props.setAlert('Товар удален из корзины', 'green', 999);
     }
     render() {
-        console.log(this.state);
         const { alert, addItems } = this.props;
         let cartList = [];
         let alertPlace = null;
@@ -47,17 +45,16 @@ class ShopingCart extends React.Component{
                     size = "L";
                 } else
                     size = "M";
-                console.log(item.uid, "easy")
                 return (
                     <div className="item ui centered grid" key={item.uid}>
                         <div className="eight wide column">
-                    <img className="List"
+                            <img alt={item.desc + item.id} className="List"
                                 src={item.src} />
                             </div>
                         <div className="five wide column itemDesc">
-                            <h3>Item Name here</h3>
+                            <h3>{item.title}</h3>
                             <p className=""> Размер:
-                        <select onChange={(e) => this.handeleSize(e.target.value, item.id)} className="ui dropdown">
+                        <select onChange={(e) => this.handeleSize(e.target.value, item.title)} className="ui dropdown">
                                 <option value={item.size}>{item.size}</option>
                                 <option value={size}>{size}</option>
                         </select> </p> 
@@ -84,7 +81,8 @@ class ShopingCart extends React.Component{
                 <div onClick={this.handeleDelivery} className="ui header">
                         Доставка
                 </div>
-                    {this.state.clicked ? <SubmitForm total={this.newTotal}/> : null}
+                    {this.state.clicked ? <SubmitForm newSize={this.state.newSize}
+                        total={this.newTotal} /> : null}
                 </div>
             </div>
              : this.EmptyCart()

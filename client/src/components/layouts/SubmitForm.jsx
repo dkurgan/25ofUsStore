@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { formErrors } from '../../helpers/formErrors';
 import { setAlert } from '../../actions/alert';
 import { rightPlaceAlert } from '../../helpers/placeAlert';
-import { calculateDelivery } from '../../actions/delivery';
+import { calculateDelivery, sendOrder } from '../../actions/delivery';
+import Loader from '../helpers/loader'
 
 class SubmitForm extends React.Component{
   state = {
@@ -22,49 +23,85 @@ class SubmitForm extends React.Component{
       pIndex: null,
       pAdress: null,
     },
-    carier: "Заполните данные",
+    // carier: "Заполните данные",
     checkbox: {
       postal: true,
       carier: false
     },
-    btnSubmit: "Оформить" 
+    waiting: false,
+    deliveryType: false,
+    btnSubmit: "Оформить",
+    deliveryCost: this.props.total + 200
   }
-  handelSubmit = e => {
+  handelSubmit = async e => {
     e.preventDefault();
     let err = formErrors(this.state);
     this.setState({ errors: err });
+    let order = this.state;
     if (Object.keys(err).length !== 0) { // Object.keys will return an array with all keys
       this.props.setAlert("Проверьте ваши данные", "red", 888);
+      return;
     }
-    else if (Object.keys(err).length === 0 && this.state.checkbox.carier === true) {
-      let order = this.state;
+    else if (Object.keys(err).length === 0 && this.state.checkbox.carier === true &&
+      this.state.deliveryType === true) {
       order.total = this.props.total;
-      order.matter = this.props.items.matter;
-      order.warehouse = "Москва, улица Южнобутовская, дом 9"
-      this.props.calculateDelivery(order);
-      this.props.setAlert('Ваш заказ переден в курьерску службу, менеджер скоро свяжется с вами',
-        'green', 888);
+      order.matter = "Одежда";
+      order.warehouse = "Москва, улица Южнобутовская, дом 9";
+      order.insurance = this.props.total;
+      order.weight = this.props.items.length;
+      this.setState({
+        btnSubmit: "Оформить",
+        waiting: true
+      });
+      this.props.setAlert('Считаем','green', 888);
+      await this.props.calculateDelivery(order);
+      this.setState({
+        waiting: false,
+        deliveryType: false,
+        deliveryCost: this.props.total + parseInt(this.props.delivery) 
+      });
+      return;
     }
-    else {
-      //add order confirmation
-      this.props.setAlert('Ваш заказ отправлен в обработку, менеджер скоро свяжется с вами',
-        'green', 888)
+    else if (Object.keys(err).length === 0 &&
+      (this.state.deliveryType === false || (this.state.checkbox.carier === false && 
+        this.state.deliveryType === true))
+    ) {
+      let delType = "Почта";
+      if (this.state.checkbox.carier === true) {
+        delType = "Курьер";
+      }
+      const delivery = {
+        delType,
+        cost: this.props.delivery
+      }
+      this.setState({ waiting: true });
+      await this.props.sendOrder(
+        order,
+        this.props.items,
+        this.props.newSize,
+        delivery
+      );
+      this.setState({ waiting: false });
+      //push user to confirm page
     }
   }
   handelDelivery = e => {
-    const { postal, carier } = this.state.checkbox;
+    const { postal, carier, deliveryType } = this.state.checkbox;
     this.setState({
       checkbox: { postal: !postal, carier: !carier },
+      deliveryType: !deliveryType,
       btnSubmit: "Расчитать доставку"
     });
-    if (postal === false)
-      this.setState({btnSubmit: "Оформить"})
+    if (postal === false) {
+      this.setState({ btnSubmit: "Оформить" })
+      this.setState({ deliveryCost: this.props.total + 200 });
+    }
   }
   formArea = () => {
     const { fName, sName, mob, email, pIndex, pAdress } = this.state.errors;
     let alertPlace = null;
-        if (alert.length > 0)
-            alertPlace = rightPlaceAlert(alert[0].postId, 999);
+    if (this.props.alert.length > 0)
+      alertPlace = rightPlaceAlert(this.props.alert[0].postId, 888);
     return (
         <form style={{marginTop: 30}} onSubmit={this.handelSubmit} className="ui form">
         <div className="two fields">
@@ -110,6 +147,7 @@ class SubmitForm extends React.Component{
               type="text" />
           </div>
           {this.props.alert ? alertPlace : null}
+        {this.state.waiting ? <Loader/> :(<div>
           <div onChange={this.handelDelivery} className="ui form">
             <div className="grouped fields">
               <label>Выберите способ доставки</label>
@@ -122,12 +160,19 @@ class SubmitForm extends React.Component{
                 <div className="field">
                   <div  className="ui radio checkbox">
                 <input type="radio" name="carier" checked={this.state.checkbox.carier}/>
-                    <label>{`Курьером: ${this.state.carier}`}</label>
+                <label>{this.props.delivery.length > 0 ? `Курьером: ${this.props.delivery} рублей` : 
+                  `Курьером: Заполните данные`}</label>
                   </div>
               </div>
             </div>
-            </div>
-        <button className="ui primary button" type="submit">{this.state.btnSubmit}</button>
+          </div>
+                <div className="content">
+            <h4> Total: {this.state.deliveryCost} денег</h4>
+                </div>
+          <button style={{ marginTop: 5 }}
+            className="ui primary button" type="submit">{this.state.btnSubmit}</button>
+          </div>
+        )}
         </form>
       )
     }
@@ -142,9 +187,10 @@ class SubmitForm extends React.Component{
 
 const mapStateToProps = state => {
     return {
-      items: state.items,
-      alert: state.alert
+      items: state.cart,
+      alert: state.alert,
+      delivery: state.delivery
     }
 }
 
-export default connect(mapStateToProps, {setAlert, calculateDelivery})(SubmitForm)
+export default connect(mapStateToProps, {setAlert, calculateDelivery, sendOrder})(SubmitForm)

@@ -4,5 +4,6 @@ export enum Methods{
 }
 export enum MetaDataKeys{
     Method = 'method',
-    Path = 'path'
+    Path = 'path',
+    Validate = 'validator'
 }

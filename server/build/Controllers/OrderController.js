@@ -44,22 +44,57 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var controller_1 = require("./decorators/controller");
 var routes_1 = require("./decorators/routes");
+var bodyValidator_1 = require("./decorators/bodyValidator");
+var mailgun_js_1 = __importDefault(require("mailgun-js"));
+var parseOrder_1 = __importDefault(require("../helpers/parseOrder"));
+var DOMAIN = 'sandbox97f0e9b8205e478481f7b9e2e5dae7d6.mailgun.org';
+var apiKey = "key-32a108de565d469909e13ff1aa60080d";
+var mg = mailgun_js_1.default({ apiKey: apiKey, domain: DOMAIN });
 var OrderController = /** @class */ (function () {
     function OrderController() {
     }
     OrderController.prototype.sendMessage = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
+            var niceData, data, error_1;
             return __generator(this, function (_a) {
-                res.status(200).json({ msg: "sassi" });
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0:
+                        niceData = parseOrder_1.default(req.body);
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        data = {
+                            from: '25-NewOrder <postmaster@sandbox97f0e9b8205e478481f7b9e2e5dae7d6.mailgun.org>',
+                            to: 'supp0rt25ofus@yandex.ru',
+                            subject: 'Whats up Йо',
+                            html: niceData
+                        };
+                        return [4 /*yield*/, mg.messages().send(data, function (error, body) {
+                                console.log(body);
+                            })];
+                    case 2:
+                        _a.sent();
+                        res.status(200).json({ msg: "sassi" });
+                        return [3 /*break*/, 4];
+                    case 3:
+                        error_1 = _a.sent();
+                        console.log(error_1);
+                        res.status(500).json(error_1);
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
+                }
             });
         });
     };
     __decorate([
         routes_1.post('/ordersend'),
+        bodyValidator_1.bodyValidate('order', 'items', 'delivery'),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [Object, Object]),
         __metadata("design:returntype", Promise)

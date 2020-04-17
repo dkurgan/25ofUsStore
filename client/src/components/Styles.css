@@ -64,9 +64,15 @@
     color: white !important;
     font-size: 18px;
 }
-.fonts-body a{
+.fonts-body {
     font: 400 15px/1.8 Lato, sans-serif !important;
     color: #777 !important;
+}
+.ui.header{
+    color: #777 !important;
+}
+.social-links{
+    color: #4183c4 !important
 }
 .copyright{ 
     color: rgba(0,0,0,.7); 
@@ -79,15 +85,23 @@
     height: 100% !important;
 }
 @media only screen and (max-width: 600px) {
-    .fonts-body a{
+    .counter{
+        position: absolute;
+        margin-left: 150px;
+        color: red !important;
         font: 400 13px/1.8 Lato, sans-serif !important;
-        color: #777 !important;
+    }
+    .fonts-body {
+        font: 400 13px/1.8 Lato, sans-serif !important;
     }
     .fonts-header {
         font-size: 18px;
     }
     .ui.menu .item{
         padding: 0.8em 1em;
+    }
+    .social-links{
+        color: #4183c4 !important
     }
 }
 .name{

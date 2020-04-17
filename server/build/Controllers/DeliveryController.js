@@ -55,28 +55,53 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var request = __importStar(require("request-promise-native"));
 var routes_1 = require("./decorators/routes");
 var controller_1 = require("./decorators/controller");
-var option = {
-    url: "https://robotapitest.dostavista.ru/api/business/1.1/calculate-order",
-    headers: {
-        "X-DV-Auth-Token": "hi"
-    }
-};
+var bodyValidator_1 = require("./decorators/bodyValidator");
+// const option = {
+//     url: "https://robotapitest.dostavista.ru/api/business/1.1/calculate-order",
+//     headers: {
+//         "X-DV-Auth-Token": "19CEABB6B51AA1F6A3A127F85D904BD6C2690BEF"
+//     }
+// }
+var url = "https://robotapitest.dostavista.ru/api/business/1.1/calculate-order";
+var headers = { "X-DV-Auth-Token": "19CEABB6B51AA1F6A3A127F85D904BD6C2690BEF" };
 var DeliveryController = /** @class */ (function () {
     function DeliveryController() {
     }
     DeliveryController.prototype.calculateDeliveryCost = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var result;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, request.post(option)];
+            var _a, matter, total_weight_kg, points, insurance_amount, is_contact_person_notification_enabled, result, error_1;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = req.body, matter = _a.matter, total_weight_kg = _a.total_weight_kg, points = _a.points, insurance_amount = _a.insurance_amount, is_contact_person_notification_enabled = _a.is_contact_person_notification_enabled;
+                        console.log(req.body.points, "Ниже реквест");
+                        _b.label = 1;
                     case 1:
-                        result = _a.sent();
+                        _b.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, request.post(url, {
+                                headers: headers,
+                                json: true,
+                                body: {
+                                    matter: matter,
+                                    total_weight_kg: total_weight_kg,
+                                    insurance_amount: insurance_amount,
+                                    is_contact_person_notification_enabled: is_contact_person_notification_enabled,
+                                    points: points
+                                }
+                            })];
+                    case 2:
+                        result = _b.sent();
+                        console.log(result);
                         if (result) {
                             res.send(result);
                         }
-                        res.send("ЛОХ");
-                        return [2 /*return*/];
+                        return [3 /*break*/, 4];
+                    case 3:
+                        error_1 = _b.sent();
+                        console.log(error_1);
+                        res.status(400).json({ msg: error_1.message });
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
                 }
             });
         });
@@ -86,6 +111,7 @@ var DeliveryController = /** @class */ (function () {
     };
     __decorate([
         routes_1.post('/delivery-calculate'),
+        bodyValidator_1.bodyValidate('matter', 'total_weight_kg', 'points', 'insurance_amount'),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [Object, Object]),
         __metadata("design:returntype", Promise)
