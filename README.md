@@ -1,7 +1,8 @@
 # Twenty 5 of Us
-## Deployed here(only mobile-friendly): http://dkurgan.github.io/25ofUsStore
+## Deployed here(only mobile-friendly): https://twentyfiveofus.herokuapp.com/
 ### This is small store-project for my sister's buisness 
 
-Still working on it.
+* Frontend:  React, Redux, Semantic UI
+* Backend: Express with TypeScript
 
-* Used: React, Redux
+
