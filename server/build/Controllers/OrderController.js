@@ -53,8 +53,8 @@ var routes_1 = require("./decorators/routes");
 var bodyValidator_1 = require("./decorators/bodyValidator");
 var mailgun_js_1 = __importDefault(require("mailgun-js"));
 var parseOrder_1 = __importDefault(require("../helpers/parseOrder"));
-var DOMAIN = 'sandbox97f0e9b8205e478481f7b9e2e5dae7d6.mailgun.org';
-var apiKey = "key-32a108de565d469909e13ff1aa60080d";
+var DOMAIN = 'bye';
+var apiKey = "hello";
 var mg = mailgun_js_1.default({ apiKey: apiKey, domain: DOMAIN });
 var OrderController = /** @class */ (function () {
     function OrderController() {
